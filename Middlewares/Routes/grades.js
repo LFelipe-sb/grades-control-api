@@ -16,7 +16,7 @@ router.post('/', async(req, res) => {
     }
     dataFile.grades.push(newStudent);
     await fs.writeFile('grades.json', JSON.stringify(dataFile, null, 2));
-    res.send('Inserido com sucesso');
+    res.send('Successfully inserted.');
 });
 
 router.put('/', async(req, res) => {
@@ -32,14 +32,14 @@ router.put('/', async(req, res) => {
 
     console.log(dataFile.grades[index])
     await fs.writeFile('grades.json', JSON.stringify(dataFile, null, 2));
-    res.send('Alterado com sucesso')
+    res.send('Successfully changed.')
 });
 
 router.delete('/:id', async(req, res) => {
     const dataFile = JSON.parse( await fs.readFile('grades.json'));
     dataFile.grades = dataFile.grades.filter((register) => register.id !== parseInt(req.params.id));
     await fs.writeFile('grades.json', JSON.stringify(dataFile, null, 2));
-    res.send('Item excluido com sucesso.');
+    res.send('Item successfully deleted.');
 });
 
 router.get('/:id', async(req, res) => {
@@ -52,6 +52,45 @@ router.get('/', async(req, res) => {
     const dataFile = JSON.parse( await fs.readFile('grades.json'));
     delete dataFile.nextId;
     res.send(dataFile);
+});
+
+router.post('/studentMedia', async(req, res) => {
+    const dataFile = JSON.parse(await fs.readFile('grades.json'));
+    const {student, subject} = req.body;
+    let sumValue = 0;
+    dataFile.grades.forEach((eachStudent) => {
+        if(eachStudent.student === student && eachStudent.subject === subject){
+            sumValue += eachStudent.value;
+        }
+    });
+    res.send(`Total sum of notes: ${sumValue}`);
+});
+
+router.post('/subjectMedia', async(req, res) => {
+    const dataFile = JSON.parse( await fs.readFile('grades.json'));
+    const {subject, type} = req.body;
+    let sumValue = 0;
+    let i = 0;
+    dataFile.grades.forEach((eachStudent) => {
+        if(eachStudent.subject === subject && eachStudent.type === type){
+            sumValue += eachStudent.value;
+            i++;
+        }
+    });
+    res.send(`The average for this item is: ${sumValue/i}`);
+});
+
+router.post('/bestGrades', async(req, res) => {
+    const dataFile = JSON.parse( await fs.readFile('grades.json'));
+    const {subject, type} = req.body;
+    const grades = [];
+    dataFile.grades.forEach((eachStudent) => {
+        if(eachStudent.subject === subject && eachStudent.type === type){
+            grades.push(eachStudent.value);
+        }
+    });
+    grades.sort((a, b) => b - a);
+    res.send(`The best grades for this itens is: [${grades.slice(0,3)}]`);
 });
 
 export default router;
