@@ -23,6 +23,7 @@ router.post('/', async(req, res, next) => {
         dataFile.grades.push(newStudent);
         await fs.writeFile('grades.json', JSON.stringify(dataFile, null, 2));
         res.send('Successfully inserted.');
+        logger.info(`POST /Grades - ${JSON.stringify(newStudent)}`);
     } catch(err) {
         next(err);
     }
@@ -48,6 +49,7 @@ router.put('/', async(req, res, next) => {
 
         await fs.writeFile('grades.json', JSON.stringify(dataFile, null, 2));
         res.send('Successfully changed.');
+        logger.info(`POST /Grades - ${JSON.stringify(req.body)}`);
     } catch(err) {
         next(err);
     }
@@ -66,6 +68,7 @@ router.delete('/:id', async(req, res, next) => {
         
         await fs.writeFile('grades.json', JSON.stringify(dataFile, null, 2));
         res.send('Item successfully deleted.');
+        logger.info(`DELETE /Grades/${req.params.id}`);
     } catch(err) {
         next(err);
     }
@@ -81,6 +84,7 @@ router.get('/:id', async(req, res, next) => {
         }
 
         res.send(index);
+        logger.info(`GET /Grades/${req.params.id}`);
     } catch(err) {
         next(err);
     }
@@ -91,6 +95,7 @@ router.get('/', async(_req, res, next) => {
         const dataFile = JSON.parse( await fs.readFile('grades.json'));
         delete dataFile.nextId;
         res.send(dataFile);
+        logger.info(`GET /Grades`);
     } catch(err) {
         next(err);
     }
@@ -112,6 +117,7 @@ router.post('/studentMedia', async(req, res, next) => {
             }
         });
         res.send(`Total sum of notes: ${sumValue}`);
+        logger.info(`POST /studentMedia - ${student, subject}: sumValue`);
     } catch(err) {
         next(err);
     }
@@ -135,6 +141,7 @@ router.post('/subjectMedia', async(req, res, next) => {
             }
         });
         res.send(`The average for this item is: ${sumValue/i}`);
+        logger.info(`POST /subjectMedia`);
     } catch(err) {
         next(err);
     }
@@ -157,12 +164,14 @@ router.post('/bestGrades', async(req, res, next) => {
         });
         grades.sort((a, b) => b - a);
         res.send(`The best grades for this itens is: [${grades.slice(0,3)}]`);
+        logger.info(`POST /bestGrades - ${JSON.stringify(grades.slice(0,3))}`);
     } catch(err) {
         next(err);
     }
 });
 
 router.use((err, req, res, _next) => {
+    global.logger.error(`${req.method} ${req.baseUrl} -> ${err.message}`)
     res.status(500).send('An error has occurred. ' + err);
 });
 

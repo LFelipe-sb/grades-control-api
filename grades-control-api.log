@@ -1,0 +1,30 @@
+2020-08-07T03:38:21.648Z [my-bank-api] -> info: API Started
+2020-08-07T03:38:37.634Z [my-bank-api] -> info: API Started
+2020-08-07T03:39:19.567Z [my-bank-api] -> info: API Started
+2020-08-07T03:40:14.730Z [my-bank-api] -> info: API Started
+2020-08-07T03:40:32.068Z [my-bank-api] -> info: API Started
+2020-08-07T03:41:10.085Z [my-bank-api] -> info: API Started
+2020-08-07T03:41:25.864Z [my-bank-api] -> info: API Started
+2020-08-07T03:42:16.892Z [my-bank-api] -> info: API Started
+2020-08-07T03:42:49.820Z [my-bank-api] -> info: API Started
+2020-08-07T03:43:20.221Z [my-bank-api] -> info: API Started
+2020-08-07T03:43:49.196Z [my-bank-api] -> info: API Started
+2020-08-07T03:44:05.903Z [my-bank-api] -> info: API Started
+2020-08-07T03:44:12.450Z [my-bank-api] -> info: API Started
+2020-08-07T03:44:46.548Z [my-bank-api] -> info: API Started
+2020-08-07T03:44:51.885Z [my-bank-api] -> info: API Started
+2020-08-07T03:45:13.752Z [my-bank-api] -> info: API Started
+2020-08-07T03:45:25.392Z [my-bank-api] -> info: GET /Grades
+2020-08-07T03:45:35.621Z [my-bank-api] -> error: GET /grades -> Register not found
+2020-08-07T03:45:40.142Z [my-bank-api] -> info: GET /Grades/4
+2020-08-07T03:45:45.399Z [my-bank-api] -> info: POST /studentMedia - 03 - React: sumValue
+2020-08-07T03:45:55.134Z [my-bank-api] -> info: POST /studentMedia - 03 - Reac: sumValue
+2020-08-07T03:46:04.676Z [my-bank-api] -> error: POST /grades -> "student" AND "subject" is required.
+2020-08-07T03:46:12.686Z [my-bank-api] -> info: POST /studentMedia - 03 - React: sumValue
+2020-08-07T03:46:17.729Z [my-bank-api] -> info: POST /subjectMedia
+2020-08-07T03:46:19.729Z [my-bank-api] -> info: POST /bestGrades - [27,7,6]
+2020-08-07T03:46:22.893Z [my-bank-api] -> info: POST /Grades - {"id":50,"student":"luke skywalkerw","subject":"03 - React","type":"Desafio","value":50,"timestamp":"2020-08-07T03:46:22.892Z"}
+2020-08-07T03:46:30.791Z [my-bank-api] -> error: PUT /grades -> Register not found
+2020-08-07T03:46:35.388Z [my-bank-api] -> info: POST /Grades - {"id":49,"student":"luke skywalker","subject":"03 - React","type":"Desafio","value":50}
+2020-08-07T03:46:38.671Z [my-bank-api] -> error: DELETE /grades -> Register not found
+2020-08-07T03:47:18.911Z [my-bank-api] -> info: API Started
